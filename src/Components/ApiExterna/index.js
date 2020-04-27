@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
+import "./style.scss"
 
 class Externo extends Component {
   state = {
@@ -23,7 +24,7 @@ class Externo extends Component {
   render() {
     return (
       <>
-        <td>{this.state.itens.length}</td>
+        <td className="table__external">{this.state.itens.length}</td>
       </>
     )
   }

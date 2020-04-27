@@ -1,0 +1,33 @@
+$bg-button-delete: rgb(255, 32, 32);
+$color-button-delete: #fff;
+
+.table__row th {
+  font-weight: 600;
+  padding: 20px;
+}
+
+.table__body tr {
+  position: relative;
+
+  &:hover {
+    background: #ccc;
+  }
+
+  td.button-delete {
+    display: none;
+    position: absolute;
+
+    button {
+      cursor: pointer;
+      border: 0;
+      background-color: $bg-button-delete;
+      color: $color-button-delete;
+      padding: 8px 14px;
+      border-radius: 4px;
+    }
+  }
+
+  &:hover td.button-delete {
+    display: block;
+  }
+}

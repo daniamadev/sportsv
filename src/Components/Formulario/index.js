@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import "./style.scss"
 
 class Formulario extends Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class Formulario extends Component {
       username: "",
       name: "",
       email: "",
-      address: "",
+      address: {
+        city: "",
+      },
       ride: "",
       day: "",
       posts: "",
@@ -22,6 +25,13 @@ class Formulario extends Component {
     this.props.dispatch({
       type: "NEW_ROW",
       payload: this.state,
+      id: this.props.userquerecebedoreducer.length + 1,
+    })
+    this.setState({
+      username: "",
+      name: "",
+      email: "",
+      address: { city: "" },
     })
   }
 
@@ -43,16 +53,23 @@ class Formulario extends Component {
     })
   }
 
+  handleCity = (e) => {
+    this.setState({
+      address: { city: e.target.value },
+    })
+  }
+
   render() {
-    const { username, name, email } = this.state
+    const { username, name, email, address } = this.state
     return (
       <section className="container">
         <hr />
 
-        <form onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleSubmit}>
           <section>
             <label htmlFor="username">Username</label>
             <input
+              className="form__input"
               id="username"
               type="text"
               name="username"
@@ -84,7 +101,13 @@ class Formulario extends Component {
 
           <section>
             <label htmlFor="city">City</label>
-            <input id="city" type="text" />
+            <input
+              id="city"
+              type="text"
+              name="city"
+              value={address.city}
+              onChange={this.handleCity}
+            />
 
             <label>Ride in group?</label>
 
@@ -126,4 +149,10 @@ class Formulario extends Component {
   }
 }
 
-export default connect()(Formulario)
+function mapStateToProps(state) {
+  return {
+    userquerecebedoreducer: state.usuariosdoreducer,
+  }
+}
+
+export default connect(mapStateToProps)(Formulario)
