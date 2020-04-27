@@ -7,16 +7,29 @@ import Day from "../ApiInterna/Day"
 import "./style.scss"
 
 class Usuarios extends Component {
-  /*   getUsuario = async () => {
-    await axios
-      .get("http://jsonplaceholder.typicode.com/users")
-      .then((result) => {
-        this.props.dispatch({
-          type: "GET_USER",
-          payload: result.data,
-        })
-      })
-  } */
+  constructor() {
+    super()
+    this.state = {
+      users: [],
+      filteredUsers: [],
+      searchTerm: "",
+    }
+  }
+
+  filterUsers() {
+    const filteredUsers = this.state.users.filter((user) => {
+      const userLowerCase = user.name.toLowerCase()
+      const searchTermLowerCase = this.state.searchTerm.toLowerCase()
+
+      return userLowerCase.includes(searchTermLowerCase)
+    })
+
+    this.setState({ filteredUsers })
+  }
+
+  handleTyping(e) {
+    this.setState({ searchTerm: e.target.value }, () => this.filterUsers())
+  }
 
   getRandom = () => {
     return Math.floor(Math.random() * 10 + 1)
@@ -28,10 +41,6 @@ class Usuarios extends Component {
       payload: userId,
     })
   }
-
-  /*   componentDidMount = () => {
-    this.getUsuario()
-  } */
 
   render() {
     return (

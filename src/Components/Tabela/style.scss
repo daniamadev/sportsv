@@ -1,5 +1,11 @@
 $bg-button-delete: rgb(255, 32, 32);
 $color-button-delete: #fff;
+$bg-line: #f0f0f0;
+$table-title: #333333;
+$th-color: #444;
+$tr-color: #f8f8f8;
+$tr-color-hover: #e3e3e3;
+$td-link: #1abc9c;
 
 .table__row th {
   font-weight: 600;
@@ -29,5 +35,73 @@ $color-button-delete: #fff;
 
   &:hover td.button-delete {
     display: block;
+  }
+}
+
+$bg-line: #f0f0f0;
+$table-title: #333333;
+$th-color: #444;
+$tr-color: #f8f8f8;
+$tr-color-hover: #e3e3e3;
+$td-link: #1abc9c;
+
+.table__title {
+  align-items: center;
+  display: flex;
+  margin-bottom: 30px;
+
+  h1 {
+    align-items: center;
+    color: $table-title;
+    display: flex;
+    flex-grow: 1;
+    font-size: 34px;
+    font-weight: 400;
+    margin-right: 50px;
+
+    &::after {
+      background-color: $bg-line;
+      content: "";
+      display: block;
+      height: 2px;
+      margin-left: 50px;
+      width: 100%;
+    }
+  }
+}
+
+.horizontal-scroll {
+  overflow: auto;
+}
+
+.tabela {
+  border-spacing: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: auto;
+
+  thead th {
+    border-bottom: 1px solid $th-color;
+    color: $th-color;
+    font-weight: 400;
+    padding: 20px;
+  }
+
+  tbody tr {
+    td {
+      padding: 15px 20px;
+
+      &.link {
+        color: $td-link;
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: $tr-color;
+    }
+
+    &:hover {
+      background-color: $tr-color-hover;
+    }
   }
 }

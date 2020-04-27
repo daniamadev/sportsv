@@ -37,7 +37,7 @@ class Tabela extends Component {
   render() {
     return (
       <>
-        <h1>Users</h1>
+        <h1 className="table__title">Users</h1>
         <input onKeyUp={this.handleSearch.bind(this)} />
         <table className="table">
           <thead className="table__header">
